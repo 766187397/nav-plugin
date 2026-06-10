@@ -1,0 +1,31 @@
+{
+  "name": "nav-plugin",
+  "description": "macOS 风格新标签页",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "compile": "vue-tsc --noEmit",
+    "postinstall": "wxt prepare",
+    "dev:web": "vite --config vite.web.config.ts",
+    "build:web": "vite build --config vite.web.config.ts"
+  },
+  "dependencies": {
+    "vue": "^3.5.29"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.42",
+    "@vitejs/plugin-vue": "^6.0.7",
+    "@wxt-dev/module-vue": "^1.0.3",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.14",
+    "vue-tsc": "^3.2.5",
+    "wxt": "^0.20.26"
+  }
+}

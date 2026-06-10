@@ -1,0 +1,181 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 360px;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  color: var(--color-text, #e0e0e0);
+  background: var(--color-bg, rgba(30, 30, 34, 0.85));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 页面信息卡片 */
+.page-info-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--color-surface, rgba(255, 255, 255, 0.08));
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.page-favicon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.page-favicon.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.page-info-text {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.page-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+
+.page-url {
+  font-size: 12px;
+  color: #888;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+
+.page-hostname {
+  font-size: 11px;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* 已保存状态 */
+.saved-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 8px;
+  color: #4ade80;
+  font-size: 15px;
+  font-weight: 500;
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.saved-state svg {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 操作按钮组 */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.target-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #aaa;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ddd;
+}
+
+.save-btn.active {
+  background: rgba(100, 140, 255, 0.15);
+  border-color: rgba(100, 140, 255, 0.35);
+  color: #8cb4ff;
+}
+
+.save-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.confirm-btn {
+  width: 100%;
+  padding: 11px;
+  margin-top: 4px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6c8cff, #5058e0);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.confirm-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7d9bff, #6269e8);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(80, 88, 224, 0.35);
+}
+
+.confirm-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* 底部提示 */
+.popup-footer {
+  text-align: center;
+  font-size: 11px;
+  color: #555;
+  padding-top: 4px;
+}
