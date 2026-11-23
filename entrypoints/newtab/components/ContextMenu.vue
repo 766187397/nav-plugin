@@ -55,6 +55,8 @@ defineExpose({ contextMenuEl })
           :style="{ opacity: item.disabled ? 0.4 : 1, pointerEvents: item.disabled ? 'none' : 'auto' }"
           @click.stop="emit('itemClick', item)"
         >
+          <!-- icon 来自内部硬编码 SVG 常量（svg() 映射），不含用户输入，渲染安全 -->
+          <!-- eslint-disable-next-line vue/no-v-html -->
           <span v-if="item.icon" v-html="item.icon"></span>
           <span>{{ item.label }}</span>
         </div>

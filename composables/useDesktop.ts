@@ -1,5 +1,5 @@
 import { reactive, ref } from 'vue'
-import type { IconData, PageData, DragState, AppData } from '@/types'
+import type { IconData, DragState, AppData } from '@/types'
 
 const EDGE_THRESHOLD = 80 // 触发页面边缘翻页的像素阈值
 const FLIP_INTERVAL = 600 // 翻页定时器间隔（毫秒）
@@ -37,18 +37,12 @@ function normalizePageIcons(icons: (IconData | null)[]): (IconData | null)[] {
   return arr.slice(0, GRID_SIZE)
 }
 
-/** 移除数组末尾连续的 null 元素 */
-function trimTrailingNulls(arr: (IconData | null)[]) {
-  while (arr.length && arr[arr.length - 1] === null) arr.pop()
-}
-
 /**
  * @description 桌面导航核心 composable，管理桌面图标、分页、拖拽、导航等全部交互逻辑
  * @param data - 响应式应用数据（包含 pages、dock、settings 等）
  * @param storage - 存储操作接口（saveData、generateId、saveCompressedIcon）
  * @param resolveImageUrl - 将图标引用解析为可显示 URL 的函数
  * @param showToast - 显示提示消息的函数
- * @param showConfirm - 显示确认对话框的函数，返回用户是否确认
  * @returns 桌面状态与方法集合（当前页码、拖拽状态、各类操作方法等）
  */
 export function useDesktop(
@@ -60,7 +54,6 @@ export function useDesktop(
   },
   resolveImageUrl: (src: string) => Promise<string>,
   showToast: (msg: string) => void,
-  showConfirm: (msg: string) => Promise<boolean>,
 ) {
   const currentPage = ref(0) // 当前显示的页面索引
   const totalPages = ref(0) // 总页面数
@@ -276,7 +269,7 @@ export function useDesktop(
     if (e.dataTransfer) e.dataTransfer.dropEffect = 'move'
     checkEdgeFlip(e)
     const cell = getTargetCell(e)
-    showPlaceholder(cell, e)
+    showPlaceholder(cell)
   }
 
   /** 页面放置处理：计算目标格子、执行图标移动、结束拖拽 */
@@ -315,7 +308,7 @@ export function useDesktop(
   }
 
   /** 在目标位置显示拖拽占位符（复用已有图标高亮或创建浮动占位元素） */
-  function showPlaceholder(cell: { pageIndex: number; iconIndex: number } | null, _e: DragEvent) {
+  function showPlaceholder(cell: { pageIndex: number; iconIndex: number } | null) {
     if (!cell) { removePlaceholder(); return }
     const pages = document.querySelectorAll('.page')
     const pageEl = pages[cell.pageIndex] as HTMLElement | undefined

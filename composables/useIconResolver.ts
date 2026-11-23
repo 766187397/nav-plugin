@@ -1,5 +1,5 @@
 import { reactive } from 'vue'
-import type { AppData, IconData } from '@/types'
+import type { AppData } from '@/types'
 
 const DEFAULT_ICON_SVG = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gray"><rect width="20" height="20" x="2" y="2" rx="4"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="10">?</text></svg>' // 默认图标 SVG（灰色问号占位图）
 
@@ -31,7 +31,7 @@ export function useIconResolver(storage: {
   async function resolveImageUrl(src: string): Promise<string> {
     if (!src) return ''
     if (resolvedUrls[src]) return resolvedUrls[src]
-    let url = ''
+    let url: string
     if (src.startsWith('idb:vid_')) {
       url = (await storage.getVideo(src)) || ''
     } else if (src.startsWith('idb:wp_')) {

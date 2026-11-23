@@ -10,7 +10,7 @@ interface Props {
   getEngineDefaultIcon: (engineId: string) => string
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 
 const emit = defineEmits<{
   toggleSearchDropdown: []
@@ -48,8 +48,8 @@ defineExpose({ searchInput, searchContainer })
           "
           alt=""
         />
-        <svg class="search-engine-arrow" width="10" height="6" viewBox="0 0 10 6">
-          <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <svg class="search-engine-arrow" width="11" height="7" viewBox="0 0 11 7">
+          <path d="M1.5 1.5L5.5 5.5L9.5 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
         </svg>
       </button>
       <div class="search-engine-dropdown" :class="{ active: searchDropdownActive }">
@@ -74,7 +74,7 @@ defineExpose({ searchInput, searchContainer })
         ref="searchInput"
         class="search-input"
         type="text"
-        :placeholder="`在 ${searchConfig.engines[searchConfig.currentEngine]?.name || ''} 中搜索...`"
+        :placeholder="`在${searchConfig.engines[searchConfig.currentEngine]?.name || ''}中搜索...`"
         autocomplete="off"
         @keydown.enter="emit('doSearch', searchInput)"
         @focus="emit('searchInputFocus', searchContainer)"

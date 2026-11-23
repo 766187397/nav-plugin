@@ -1,4 +1,4 @@
-import { ref, computed, reactive } from 'vue'
+import { ref, computed } from 'vue'
 import type { ContextMenuData, MenuItem, AppData, IconData } from '@/types'
 
 /** 右键菜单图标名称到 SVG 字符串的映射表 */

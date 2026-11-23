@@ -724,7 +724,7 @@ html, body {
   transform: translateX(-50%);
   z-index: 10;
   width: 90%;
-  max-width: 580px;
+  max-width: 720px;
   opacity: 1;
   pointer-events: auto;
   transition: opacity var(--transition-normal), transform var(--transition-normal);
@@ -745,27 +745,37 @@ html, body {
 .search-box {
   display: flex;
   align-items: center;
+  height: 56px;
+  padding: 0 8px 0 10px;
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
-  border-radius: var(--radius-xl);
-  padding: 4px 6px 4px 4px;
-  transition: all var(--transition-normal);
-  box-shadow: var(--shadow-md);
+  border-radius: 999px;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition:
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal);
   position: relative;
 }
 
 .search-box:focus-within {
-  transform: scale(1.02);
+  border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.45),
+    0 0 0 3px color-mix(in srgb, var(--color-accent) 14%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .search-engine-btn {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 8px 10px;
+  gap: 6px;
+  height: 40px;
+  padding: 0 12px;
   border: none;
-  border-radius: var(--radius-lg);
+  border-radius: 999px;
   background: transparent;
   color: var(--color-text);
   cursor: pointer;
@@ -777,27 +787,36 @@ html, body {
   background: var(--color-surface-hover);
 }
 
+.search-engine-btn:active {
+  background: var(--color-surface);
+}
+
 .search-engine-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
   object-fit: contain;
 }
 
 .search-engine-arrow {
   opacity: 0.5;
   flex-shrink: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.search-engine-btn:hover .search-engine-arrow {
+  opacity: 0.8;
 }
 
 .search-engine-dropdown {
   position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  min-width: 180px;
-  background: rgba(40, 40, 55, 0.95);
+  top: calc(100% + 10px);
+  left: 10px;
+  min-width: 190px;
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
   backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: 6px;
   box-shadow: var(--shadow-lg);
   display: none;
@@ -819,7 +838,7 @@ html, body {
   align-items: center;
   gap: 10px;
   padding: 8px 12px;
-  border-radius: var(--radius-sm);
+  border-radius: 10px;
   cursor: pointer;
   transition: background var(--transition-fast);
   font-size: 13px;
@@ -830,7 +849,7 @@ html, body {
 }
 
 .search-engine-item.active {
-  background: var(--color-surface);
+  background: var(--color-accent-subtle);
   color: var(--color-accent);
 }
 
@@ -843,13 +862,15 @@ html, body {
 
 .search-input {
   flex: 1;
+  height: 100%;
   border: none;
   background: transparent;
   color: var(--color-text);
-  font-size: 15px;
+  font-size: 16px;
   font-family: inherit;
+  letter-spacing: 0.01em;
   outline: none;
-  padding: 12px 14px;
+  padding: 0 12px 0 4px;
   min-width: 0;
 }
 
@@ -864,17 +885,26 @@ html, body {
   width: 40px;
   height: 40px;
   border: none;
-  border-radius: var(--radius-lg);
+  border-radius: 50%;
   background: var(--color-accent);
-  color: #1a1a1a;
+  color: #0f2530;
   cursor: pointer;
-  transition: all var(--transition-fast);
   flex-shrink: 0;
+  box-shadow: 0 2px 10px var(--color-accent-glow);
+  transition:
+    background var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .search-submit-btn:hover {
   background: var(--color-accent-hover);
-  transform: scale(1.05);
+  box-shadow: 0 4px 16px var(--color-accent-glow);
+  transform: scale(1.06);
+}
+
+.search-submit-btn:active {
+  transform: scale(0.94);
 }
 
 /* ============================================
@@ -1019,6 +1049,10 @@ html, body {
   text-overflow: ellipsis;
   white-space: nowrap;
   line-height: 1.5;
+}
+
+.page-indicators.force-hidden {
+  display: none !important;
 }
 
 .page-indicators {

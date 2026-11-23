@@ -138,7 +138,11 @@ function onViewportTouchEnd() {
         <path d="M9 18l6-6-6-6" />
       </svg>
     </button>
-    <div ref="pageIndicators" class="page-indicators">
+    <div
+      ref="pageIndicators"
+      class="page-indicators"
+      :class="{ 'force-hidden': showPageIndicators === false }"
+    >
       <div
         v-for="i in totalPages"
         :key="i"

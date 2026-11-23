@@ -15,9 +15,9 @@ function parseUrl(url: string) {
 function normalizeUrl(url: string): string | null {
   if (!url) return null;
   url = url.trim();
-  const match = url.match(/^(https?:\/\/[^\/]+)/i);
+  const match = url.match(/^(https?:\/\/[^/]+)/i);
   if (match) return match[1];
-  if (/^[\p{L}0-9]/u.test(url)) return `https://${url.replace(/[\/\?#.].*$/, "")}`;
+  if (/^[\p{L}0-9]/u.test(url)) return `https://${url.replace(/[/?#.].*$/, "")}`;
   return null;
 }
 

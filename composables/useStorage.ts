@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import type { AppData, IconData } from '../types'
+import type { AppData } from '../types'
 
 // ── 存储常量 ───────────────────────────────────────────
 const DB_NAME = 'NewTabDB' // IndexedDB 数据库名称

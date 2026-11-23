@@ -10,7 +10,7 @@ interface Props {
   getThemeHexValue: (key: string) => string
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 
 const emit = defineEmits<{
   bgModeChange: [mode: string]

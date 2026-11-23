@@ -25,7 +25,6 @@ import ConfirmDialog from "./components/ui/ConfirmDialog.vue";
 import ToastContainer from "./components/ui/ToastContainer.vue";
 import LoadingOverlay from "./components/ui/LoadingOverlay.vue";
 import VideoUrlModal from "./components/ui/VideoUrlModal.vue";
-import { IconData } from "@/types";
 
 // ── 子组件 template refs（必须在 composable 之前声明，因为回调中引用） ──
 const bgRef = ref<InstanceType<typeof Background>>();
@@ -121,7 +120,6 @@ const desktop = useDesktop(
   { saveData, generateId, saveCompressedIcon },
   resolveImageUrl,
   showToast,
-  showConfirm,
 );
 const {
   currentPage,
@@ -230,9 +228,6 @@ const {
   fetchNameDisabled,
   fetchNameText,
   addDesktopIcon: modalAddDesktopIcon,
-  editDesktopIcon: modalEditDesktopIcon,
-  editDockIcon: modalEditDockIcon,
-  addDockIcon: modalAddDockIcon,
   addSearchEngine,
   editSearchEngine,
   closeModal,
@@ -308,7 +303,6 @@ const settings = useSettings(
 const {
   settingsActive,
   activeSettingsTab,
-  openSettings,
   closeSettings,
   switchSettingsTab,
   onSettingsBgModeChange,
